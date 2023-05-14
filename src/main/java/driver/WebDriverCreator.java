@@ -20,19 +20,15 @@ public class WebDriverCreator {
     }
 
     private static WebDriver createYandexDriver() {
-//        System.setProperty("webdriver.chrome.driver", System.getenv("YANDEX_DRIVER_PATH"));
-
-        System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver110.exe");
+        System.setProperty("webdriver.chrome.driver", System.getenv("YANDEX_DRIVER_PATH"));
         ChromeOptions options = new ChromeOptions();
-//        String yandexDriverPath = System.getenv("YANDEX_BROWSER_PATH");
-        options.setBinary("C:\\Users\\AAssan\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
+        options.setBinary(System.getenv("YANDEX_BROWSER_PATH"));
 
         return new ChromeDriver(options);
     }
 
     private static WebDriver createChromeDriver() {
-        //        System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER_PATH"));
-        System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver112.exe");
+        System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER_PATH"));
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-options=*");
         return new ChromeDriver(options);
