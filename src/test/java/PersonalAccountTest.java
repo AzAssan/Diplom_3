@@ -1,12 +1,9 @@
 import clients.UserClient;
 import driver.WebDriverCreator;
-import enums.Browser;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 
 import page.object.ConstructorPage;
@@ -19,28 +16,15 @@ import user.information.UserRequest;
 
 import static org.junit.Assert.assertTrue;
 
-@RunWith(Parameterized.class)
 public class PersonalAccountTest {
-    private final WebDriver driver;
+    private final WebDriver driver = WebDriverCreator.createWebDriver();
     private final UserRequest user = UserRequest.generate();
     private final UserClient apiClient = new UserClient();
     private UserCreds creds;
 
 
-    @Parameterized.Parameters
-    public static Object[][] getBrowser() {
-        return new Object[][]{
-                {Browser.CHROME},
-                {Browser.YANDEX},
-        };
-    }
-
     public void enterMainPage() {
         driver.get("https://stellarburgers.nomoreparties.site");
-    }
-
-    public PersonalAccountTest(Browser browser) {
-        driver = WebDriverCreator.createWebDriver(browser);
     }
 
     @Before

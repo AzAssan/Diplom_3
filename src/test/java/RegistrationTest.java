@@ -1,32 +1,15 @@
 import driver.WebDriverCreator;
-import enums.Browser;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import page.object.LoginPage;
 import page.object.RegistrationPage;
 import user.information.UserRequest;
 
 import static org.junit.Assert.assertTrue;
-
-@RunWith(Parameterized.class)
 public class RegistrationTest {
-    private final WebDriver driver;
-
-    @Parameterized.Parameters
-    public static Object[][] getBrowser() {
-        return new Object[][]{
-                {Browser.CHROME},
-                {Browser.YANDEX},
-        };
-    }
-
-    public RegistrationTest(Browser browser) {
-        driver = WebDriverCreator.createWebDriver(browser);
-    }
+    private final WebDriver driver = WebDriverCreator.createWebDriver();
 
     @After
     public void tearDown() {
