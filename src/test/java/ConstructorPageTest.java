@@ -15,7 +15,7 @@ public class ConstructorPageTest {
         driver.quit();
     }
 
-    public void enterMainPage() {
+    private void enterMainPage() {
         driver.get("https://stellarburgers.nomoreparties.site");
     }
 

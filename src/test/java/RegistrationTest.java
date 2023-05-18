@@ -46,7 +46,7 @@ public class RegistrationTest {
         assertTrue(registrationPage.isErrorIncorrectPasswordExists());
     }
 
-    public void enterRegistrationPage() {
+    private void enterRegistrationPage() {
         driver.get("https://stellarburgers.nomoreparties.site/register");
     }
 

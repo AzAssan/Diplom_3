@@ -23,7 +23,7 @@ public class PersonalAccountTest {
     private UserCreds creds;
 
 
-    public void enterMainPage() {
+    private void enterMainPage() {
         driver.get("https://stellarburgers.nomoreparties.site");
     }
 

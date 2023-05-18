@@ -73,7 +73,7 @@ public class LoginTests {
         checkLogin(driver);
     }
 
-    public void checkLogin(WebDriver driver) {
+    private void checkLogin(WebDriver driver) {
         LoginPage loginPage = new LoginPage(driver);
         assertTrue(loginPage.isPageOpened());
 
@@ -81,18 +81,16 @@ public class LoginTests {
         assertTrue(loginPage.isUserLoggedIn());
     }
 
-    public void enterMainPage() {
+    private void enterMainPage() {
         driver.get("https://stellarburgers.nomoreparties.site");
     }
 
-    public void enterRegistrationPage() {
+    private void enterRegistrationPage() {
         driver.get("https://stellarburgers.nomoreparties.site/register");
     }
 
-    public void enterForgotPasswordPage() {
+    private void enterForgotPasswordPage() {
         driver.get("https://stellarburgers.nomoreparties.site/forgot-password");
     }
-
-
 }
 
