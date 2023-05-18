@@ -1,4 +1,5 @@
 import clients.UserClient;
+import com.github.javafaker.Faker;
 import driver.WebDriverCreator;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -18,17 +19,19 @@ import static org.junit.Assert.assertTrue;
 
 public class PersonalAccountPageTest {
     private final WebDriver driver = WebDriverCreator.createWebDriver();
-    private final UserRequest user = UserRequest.generate();
     private final UserClient apiClient = new UserClient();
+    private final Faker faker = new Faker();
+    private UserRequest user;
     private UserCreds creds;
 
 
-    private void enterMainPage() {
-        driver.get("https://stellarburgers.nomoreparties.site");
-    }
-
     @Before
     public void setUp() {
+        user = new UserRequest(
+                faker.internet().emailAddress(),
+                faker.internet().password(),
+                faker.name().firstName()
+        );
         creds = apiClient.userCreate(user);
     }
 
@@ -109,6 +112,10 @@ public class PersonalAccountPageTest {
         ConstructorPage constructorPage = new ConstructorPage(driver);
         constructorPage.clickLogo();
         assertTrue(mainPage.isPageTitle());
+    }
+
+    private void enterMainPage() {
+        driver.get("https://stellarburgers.nomoreparties.site");
     }
 
 }

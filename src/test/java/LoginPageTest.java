@@ -1,4 +1,5 @@
 import clients.UserClient;
+import com.github.javafaker.Faker;
 import driver.WebDriverCreator;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -15,13 +16,18 @@ public class LoginPageTest {
 
     private final WebDriver driver = WebDriverCreator.createWebDriver();
     private final UserClient apiClient = new UserClient();
+    private final Faker faker = new Faker();
     private UserRequest user;
     private UserCreds creds;
 
 
     @Before
     public void setUp() {
-        user = UserRequest.generate();
+        user = new UserRequest(
+                faker.internet().emailAddress(),
+                faker.internet().password(),
+                faker.name().firstName()
+        );
         creds = apiClient.userCreate(user);
     }
 
