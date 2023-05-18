@@ -8,7 +8,7 @@ import page.object.RegistrationPage;
 import user.information.UserRequest;
 
 import static org.junit.Assert.assertTrue;
-public class RegistrationTest {
+public class RegistrationPageTest {
     private final WebDriver driver = WebDriverCreator.createWebDriver();
 
     @After

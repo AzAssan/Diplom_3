@@ -16,7 +16,7 @@ import user.information.UserRequest;
 
 import static org.junit.Assert.assertTrue;
 
-public class PersonalAccountTest {
+public class PersonalAccountPageTest {
     private final WebDriver driver = WebDriverCreator.createWebDriver();
     private final UserRequest user = UserRequest.generate();
     private final UserClient apiClient = new UserClient();
