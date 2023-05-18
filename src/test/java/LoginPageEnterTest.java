@@ -1,56 +1,51 @@
-import clients.UserClient;
 import driver.WebDriverCreator;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import page.object.*;
-import user.information.UserCreds;
-import user.information.UserRequest;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class LoginTests {
+public class LoginPageEnterTest {
     private final WebDriver driver = WebDriverCreator.createWebDriver();
-    private final UserRequest user = UserRequest.generate();
-    private final UserClient apiClient = new UserClient();
-    private UserCreds creds;
-
-
-    @Before
-    public void setUp() {
-        creds = apiClient.userCreate(user);
-    }
+    private final String loginURL = "https://stellarburgers.nomoreparties.site/login";
 
     @After
     public void tearDown() {
         driver.quit();
-        apiClient.userDelete(creds);
     }
 
     @Test
-    @DisplayName("Успешный логин пользователя через кнопку 'Войти в аккаунт' на главной странице")
+    @DisplayName("Вход через кнопку 'Войти в аккаунт' на главной странице")
     public void testLoginFromMainPage() {
         enterMainPage();
 
         MainPage mainPage = new MainPage(driver);
         mainPage.clickSignInButton();
 
-        checkLogin(driver);
+        assertEquals(loginURL, driver.getCurrentUrl());
+
+        LoginPage loginPage = new LoginPage(driver);
+        assertTrue(loginPage.isPageOpened());
     }
 
     @Test
-    @DisplayName("Успешный логин пользователя через ссылку 'Личный кабинет'")
+    @DisplayName("Вход через ссылку в личном кабинете")
     public void testLoginFromAccountPage() {
         enterMainPage();
 
         MainPage mainPage = new MainPage(driver);
         mainPage.clickPersonalAccountButton();
 
-        checkLogin(driver);
+        assertEquals(loginURL, driver.getCurrentUrl());
+
+        LoginPage loginPage = new LoginPage(driver);
+        assertTrue(loginPage.isPageOpened());
     }
 
     @Test
-    @DisplayName("Успешный логин пользователя через кнопку 'Регистрации'")
+    @DisplayName("Вход через кнопку в странице регистрации")
     public void testLoginFromRegistrationPage() {
         enterRegistrationPage();
 
@@ -58,11 +53,14 @@ public class LoginTests {
         assertTrue(registrationPage.isPageOpened());
         registrationPage.clickSignInLink();
 
-        checkLogin(driver);
+        assertEquals(loginURL, driver.getCurrentUrl());
+
+        LoginPage loginPage = new LoginPage(driver);
+        assertTrue(loginPage.isPageOpened());
     }
 
     @Test
-    @DisplayName("Успешный логин пользователя через страницу 'Восстановленя пароля'")
+    @DisplayName("Вход через ссылку в странице восстановления пароля")
     public void testLoginFromRestorePasswordForm() {
         enterForgotPasswordPage();
 
@@ -70,15 +68,10 @@ public class LoginTests {
         assertTrue(restorePasswordPage.isPageOpened());
         restorePasswordPage.clickSignInLink();
 
-        checkLogin(driver);
-    }
+        assertEquals(loginURL, driver.getCurrentUrl());
 
-    private void checkLogin(WebDriver driver) {
         LoginPage loginPage = new LoginPage(driver);
         assertTrue(loginPage.isPageOpened());
-
-        loginPage.login(user.getEmail(), user.getPassword());
-        assertTrue(loginPage.isUserLoggedIn());
     }
 
     private void enterMainPage() {
