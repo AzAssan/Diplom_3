@@ -34,15 +34,6 @@ public class UserClient {
         return response.body().as(UserCreds.class);
     }
 
-//    @Step("Login user")
-//    public Response userLogin(UserRequest user) {
-//        return given()
-//                .header("Content-type", "application/json")
-//                .body(user)
-//                .when()
-//                .post(LOGIN_USER_PATH);
-//    }
-
     @Step("Delete user")
     public void userDelete(UserCreds userCreds) {
         given()
