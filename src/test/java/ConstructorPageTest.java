@@ -25,13 +25,11 @@ public class ConstructorPageTest {
         enterMainPage();
 
         ConstructorPage constructorPage = new ConstructorPage(driver);
-        constructorPage.clickConstructorButton();
-        assertTrue(constructorPage.isPageTitle());
 
         // сначала нажимаем 'Соусы', чтобы после перейти в 'Булки'
         constructorPage.clickSaucesButton();
         constructorPage.clickBunsButton();
-        assertTrue(constructorPage.isBuns());
+        assertTrue(constructorPage.isBunsSelected());
     }
 
     @Test
@@ -40,11 +38,9 @@ public class ConstructorPageTest {
         enterMainPage();
 
         ConstructorPage constructorPage = new ConstructorPage(driver);
-        constructorPage.clickConstructorButton();
-        assertTrue(constructorPage.isPageTitle());
 
         constructorPage.clickSaucesButton();
-        assertTrue(constructorPage.isSauces());
+        assertTrue(constructorPage.isSaucesSelected());
     }
 
     @Test
@@ -53,10 +49,8 @@ public class ConstructorPageTest {
         enterMainPage();
 
         ConstructorPage constructorPage = new ConstructorPage(driver);
-        constructorPage.clickConstructorButton();
-        assertTrue(constructorPage.isPageTitle());
 
         constructorPage.clickToppingsButton();
-        assertTrue(constructorPage.isToppings());
+        assertTrue(constructorPage.isToppingsSelected());
     }
 }
